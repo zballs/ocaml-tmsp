@@ -1,0 +1,579 @@
+.protobuf-package "types"
+
+.record [
+    .name Request
+    .field [
+        .name echo
+        .type RequestEcho
+        .optional
+        .code 1
+    ]
+    .field [
+        .name flush
+        .type RequestFlush
+        .optional
+        .code 2
+    ]
+    .field [
+        .name info
+        .type RequestInfo
+        .optional
+        .code 3
+    ]
+    .field [
+        .name set-option
+        .type RequestSetOption
+        .optional
+        .code 4
+    ]
+    .field [
+        .name append-tx
+        .type RequestAppendTx
+        .optional
+        .code 5
+    ]
+    .field [
+        .name check-tx
+        .type RequestCheckTx
+        .optional
+        .code 6
+    ]
+    .field [
+        .name commit
+        .type RequestCommit
+        .optional
+        .code 7
+    ]
+    .field [
+        .name query
+        .type RequestQuery
+        .optional
+        .code 8
+    ]
+    .field [
+        .name init-chain
+        .type RequestInitChain
+        .optional
+        .code 9
+    ]
+    .field [
+        .name begin-block
+        .type RequestBeginBlock
+        .optional
+        .code 10
+    ]
+    .field [
+        .name end-block
+        .type RequestEndBlock
+        .optional
+        .code 11
+    ]
+]
+
+.record [
+    .name RequestEcho
+    .field [
+        .name message
+        .type string
+        .optional
+        .code 1
+    ]
+]
+
+.record [ .name RequestFlush ]
+
+.record [ .name RequestInfo ]
+
+.record [
+    .name RequestSetOption
+    .field [
+        .name key
+        .type string
+        .optional
+        .code 1
+    ]
+    .field [
+        .name value
+        .type string
+        .optional
+        .code 2
+    ]
+]
+
+.record [
+    .name RequestAppendTx
+    .field [
+        .name tx
+        .type binary
+        .optional
+        .code 1
+    ]
+]
+
+.record [
+    .name RequestCheckTx
+    .field [
+        .name tx
+        .type binary
+        .optional
+        .code 1
+    ]
+]
+
+.record [
+    .name RequestQuery
+    .field [
+        .name query
+        .type binary
+        .optional
+        .code 1
+    ]
+]
+
+.record [ .name RequestCommit ]
+
+.record [
+    .name RequestInitChain
+    .field [
+        .name validators
+        .type Validator
+        .repeated
+        .code 1
+    ]
+]
+
+.record [
+    .name RequestBeginBlock
+    .field [
+        .name height
+        .type uint64
+        .optional
+        .code 1
+    ]
+]
+
+.record [
+    .name RequestEndBlock
+    .field [
+        .name height
+        .type uint64
+        .optional
+        .code 1
+    ]
+]
+
+.record [
+    .name Response
+    .field [
+        .name error
+        .type ResponseError
+        .optional
+        .code 1
+    ]
+    .field [
+        .name echo
+        .type ResponseEcho
+        .optional
+        .code 2
+    ]
+    .field [
+        .name flush
+        .type ResponseFlush
+        .optional
+        .code 3
+    ]
+    .field [
+        .name info
+        .type ResponseInfo
+        .optional
+        .code 4
+    ]
+    .field [
+        .name set-option
+        .type ResponseSetOption
+        .optional
+        .code 5
+    ]
+    .field [
+        .name append-tx
+        .type ResponseAppendTx
+        .optional
+        .code 6
+    ]
+    .field [
+        .name check-tx
+        .type ResponseCheckTx
+        .optional
+        .code 7
+    ]
+    .field [
+        .name commit
+        .type ResponseCommit
+        .optional
+        .code 8
+    ]
+    .field [
+        .name query
+        .type ResponseQuery
+        .optional
+        .code 9
+    ]
+    .field [
+        .name init-chain
+        .type ResponseInitChain
+        .optional
+        .code 10
+    ]
+    .field [
+        .name begin-block
+        .type ResponseBeginBlock
+        .optional
+        .code 11
+    ]
+    .field [
+        .name end-block
+        .type ResponseEndBlock
+        .optional
+        .code 12
+    ]
+]
+
+.record [
+    .name ResponseError
+    .field [
+        .name error
+        .type string
+        .optional
+        .code 1
+    ]
+]
+
+.record [
+    .name ResponseEcho
+    .field [
+        .name message
+        .type string
+        .optional
+        .code 1
+    ]
+]
+
+.record [ .name ResponseFlush ]
+
+.record [
+    .name ResponseInfo
+    .field [
+        .name info
+        .type string
+        .optional
+        .code 1
+    ]
+]
+
+.record [
+    .name ResponseSetOption
+    .field [
+        .name log
+        .type string
+        .optional
+        .code 1
+    ]
+]
+
+.record [
+    .name ResponseAppendTx
+    .field [
+        .name code
+        .type CodeType
+        .optional
+        .code 1
+    ]
+    .field [
+        .name data
+        .type binary
+        .optional
+        .code 2
+    ]
+    .field [
+        .name log
+        .type string
+        .optional
+        .code 3
+    ]
+]
+
+.record [
+    .name ResponseCheckTx
+    .field [
+        .name code
+        .type CodeType
+        .optional
+        .code 1
+    ]
+    .field [
+        .name data
+        .type binary
+        .optional
+        .code 2
+    ]
+    .field [
+        .name log
+        .type string
+        .optional
+        .code 3
+    ]
+]
+
+.record [
+    .name ResponseQuery
+    .field [
+        .name code
+        .type CodeType
+        .optional
+        .code 1
+    ]
+    .field [
+        .name data
+        .type binary
+        .optional
+        .code 2
+    ]
+    .field [
+        .name log
+        .type string
+        .optional
+        .code 3
+    ]
+]
+
+.record [
+    .name ResponseCommit
+    .field [
+        .name code
+        .type CodeType
+        .optional
+        .code 1
+    ]
+    .field [
+        .name data
+        .type binary
+        .optional
+        .code 2
+    ]
+    .field [
+        .name log
+        .type string
+        .optional
+        .code 3
+    ]
+]
+
+.record [ .name ResponseInitChain ]
+
+.record [ .name ResponseBeginBlock ]
+
+.record [
+    .name ResponseEndBlock
+    .field [
+        .name diffs
+        .type Validator
+        .repeated
+        .code 4
+    ]
+]
+
+.record [
+    .name Validator
+    .field [
+        .name pubKey
+        .type binary
+        .optional
+        .code 1
+    ]
+    .field [
+        .name power
+        .type uint64
+        .optional
+        .code 2
+    ]
+]
+
+.enum [
+    .name MessageType
+    .option [
+        .name NullMessage
+        .code 0
+    ]
+    .option [
+        .name Echo
+        .code 1
+    ]
+    .option [
+        .name Flush
+        .code 2
+    ]
+    .option [
+        .name Info
+        .code 3
+    ]
+    .option [
+        .name SetOption
+        .code 4
+    ]
+    .option [
+        .name Error
+        .code 5
+    ]
+    .option [
+        .name AppendTx
+        .code 17
+    ]
+    .option [
+        .name CheckTx
+        .code 18
+    ]
+    .option [
+        .name Commit
+        .code 19
+    ]
+    .option [
+        .name Query
+        .code 20
+    ]
+    .option [
+        .name InitChain
+        .code 21
+    ]
+    .option [
+        .name BeginBlock
+        .code 22
+    ]
+    .option [
+        .name EndBlock
+        .code 23
+    ]
+]
+
+.enum [
+    .name CodeType
+    .option [
+        .name OK
+        .code 0
+    ]
+    .option [
+        .name InternalError
+        .code 1
+    ]
+    .option [
+        .name EncodingError
+        .code 2
+    ]
+    .option [
+        .name BadNonce
+        .code 3
+    ]
+    .option [
+        .name Unauthorized
+        .code 4
+    ]
+    .option [
+        .name InsufficientFunds
+        .code 5
+    ]
+    .option [
+        .name UnknownRequest
+        .code 6
+    ]
+    .option [
+        .name BaseDuplicateAddress
+        .code 101
+    ]
+    .option [
+        .name BaseEncodingError
+        .code 102
+    ]
+    .option [
+        .name BaseInsufficientFees
+        .code 103
+    ]
+    .option [
+        .name BaseInsufficientFunds
+        .code 104
+    ]
+    .option [
+        .name BaseInsufficientGasPrice
+        .code 105
+    ]
+    .option [
+        .name BaseInvalidInput
+        .code 106
+    ]
+    .option [
+        .name BaseInvalidOutput
+        .code 107
+    ]
+    .option [
+        .name BaseInvalidPubKey
+        .code 108
+    ]
+    .option [
+        .name BaseInvalidSequence
+        .code 109
+    ]
+    .option [
+        .name BaseInvalidSignature
+        .code 110
+    ]
+    .option [
+        .name BaseUnknownAddress
+        .code 111
+    ]
+    .option [
+        .name BaseUnknownPubKey
+        .code 112
+    ]
+    .option [
+        .name BaseUnknownPlugin
+        .code 113
+    ]
+    .option [
+        .name GovUnknownEntity
+        .code 201
+    ]
+    .option [
+        .name GovUnknownGroup
+        .code 202
+    ]
+    .option [
+        .name GovUnknownProposal
+        .code 203
+    ]
+    .option [
+        .name GovDuplicateGroup
+        .code 204
+    ]
+    .option [
+        .name GovDuplicateMember
+        .code 205
+    ]
+    .option [
+        .name GovDuplicateProposal
+        .code 206
+    ]
+    .option [
+        .name GovDuplicateVote
+        .code 207
+    ]
+    .option [
+        .name GovInvalidMember
+        .code 208
+    ]
+    .option [
+        .name GovInvalidVote
+        .code 209
+    ]
+    .option [
+        .name GovInvalidVotingPower
+        .code 210
+    ]
+]
