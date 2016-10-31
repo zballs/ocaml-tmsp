@@ -13,6 +13,8 @@ let sockaddr (addr : string) (port : int) = Unix.ADDR_INET ((Unix.inet_addr_of_s
 class socket_server (addr : string) (port : int) (app : App.application)  = 
 	object(self) 
 
+	inherit Service.quit_service "TMSP server" as service
+
 	val addr = addr 
 	val port = port
 	val listener = s_descr()
@@ -31,18 +33,26 @@ class socket_server (addr : string) (port : int) (app : App.application)  =
 		Unix.setsockopt listener SO_REUSEADDR true;
 		Unix.set_nonblock listener;
 		Unix.bind listener (sockaddr addr port);
-
+		
 	method onStart () =
-		(* service stuff *)
-		Unix.listen listener listenBacklog;
+		match service # onStart () with 
+		| Some (error) -> 
+			Some (error)
+		| None ->
+			Unix.listen listener listenBacklog;
+			None
 
 	method onStop () =
-		(* service stuff *) 
-		Unix.close listener;
-		Mutex.lock connsMtx;
-		M.iter (fun c -> Unix.close) conns;
-		conns <- M.empty;
-		Mutex.unlock connsMtx;
+		match service # onStop () with 
+		| Some (error) -> 
+			Some (error)
+		| None ->
+			Unix.close listener;
+			Mutex.lock connsMtx;
+			M.iter (fun c -> Unix.close) conns;
+			conns <- M.empty;
+			Mutex.unlock connsMtx;
+			None
 
 	method addConn (c : file_descr) =
 		Mutex.lock connsMtx;

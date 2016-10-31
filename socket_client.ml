@@ -243,7 +243,8 @@ object(self)
 			match (Marshal.from_channel queueIn : req_res) with
 			| exception _ -> 
 				err := Some (Error "Marshal error");
-			| reqres -> 
+			| reqres ->
+				reqres # signal (); 
 				reqres # setFinished ();
 		done;
 		!err
